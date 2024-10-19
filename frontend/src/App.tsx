@@ -6,10 +6,11 @@ const Home: React.FC = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/next'); // 클릭 시 다음 페이지로 이동
-        
+        navigate('/next');
+    };
+
     return (
-        <div style={{ position: 'relative', width: '500px', height: '500px' }}>
+        <div style={{ position: 'relative', width: '500px', height: '500px' }} onClick={handleClick}>
             <img
                 src={MySvgImage}
                 alt="My SVG"
