@@ -31,3 +31,4 @@
 
 # Ignore miscellaneous files
 **/public/vite.svg
+*.save

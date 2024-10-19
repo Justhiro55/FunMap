@@ -5,6 +5,9 @@ import MySvgImage from './TV - 1.svg'; // SVG import path
 const Home: React.FC = () => {
     const navigate = useNavigate();
 
+    const handleClick = () => {
+        navigate('/next'); // 클릭 시 다음 페이지로 이동
+        
     return (
         <div style={{ position: 'relative', width: '500px', height: '500px' }}>
             <img
@@ -12,22 +15,12 @@ const Home: React.FC = () => {
                 alt="My SVG"
                 style={{ width: '100%', height: '100%' }}
             />
-            <button
-                onClick={() => navigate('/next')}
-                style={{
-                    position: 'absolute',
-                    top: '50px',
-                    left: '50px',
-                }}
-            >
-                button
-            </button>
         </div>
     );
 };
 
 const NextPage: React.FC = () => {
-    return <h1>다음 페이지</h1>;
+    return <h1>next page</h1>;
 };
 
 const App: React.FC = () => {
