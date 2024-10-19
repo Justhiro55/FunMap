@@ -1,6 +1,6 @@
 # HAM 経路案内プラットフォーム
 
-### プロジェクトセットアップ
+### プロジェクトセットアップ(React + Vite + Next.js)
 インストール方法
 ```
 git@github.com:FISH-HACKATHON/HAM.git
