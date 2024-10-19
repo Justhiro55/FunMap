@@ -12,13 +12,27 @@ const Home: React.FC = () => {
     };
 
     return (
-        <div style={{ position: 'relative', width: '500px', height: '500px' }} onClick={handleClick}>
-            <img
-                src={MySvgImage}
-                alt="My SVG"
-                style={{ width: '100%', height: '100%' }}
-            />
-        </div>
+<div
+  style={{
+    position: 'fixed',
+    top: 0,
+    left: -13,
+    width: '100vw',
+    height: '100vh',
+    overflow: 'hidden'
+  }}
+  onClick={handleClick}
+>
+  <img
+    src={MySvgImage}
+    alt="My SVG"
+    style={{
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover'
+    }}
+  />
+</div>
     );
 };
 
