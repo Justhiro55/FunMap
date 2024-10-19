@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import MySvgImage from './TV - 1.svg'; // SVG import path
 
-function App() {
-  const [count, setCount] = useState(0)
+const Home: React.FC = () => {
+    const navigate = useNavigate();
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    return (
+        <div style={{ position: 'relative', width: '500px', height: '500px' }}>
+            <img 
+                src={MySvgImage}
+                alt="My SVG"
+                style={{ width: '100%', height: '100%' }}
+            />
+            <button
+                onClick={() => navigate('/next')} // move to next page
+                style={{
+                    position: 'absolute',
+                    top: '50px',
+                    left: '50px',
+                }}
+            >
+                button
+            </button>
+        </div>
+    );
+};
 
-export default App
+const NextPage: React.FC = () => {
+    return <h1>다음 페이지</h1>;
+};
+
+const App: React.FC = () => {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/next" element={<NextPage />} />
+            </Routes>
+        </Router>
+    );
+};
+
+export default App;
