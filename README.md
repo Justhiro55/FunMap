@@ -18,7 +18,7 @@ npm install
 ```
 npm run dev
 ```
-デフォルトでは、http://localhost:5173で開発サーバーが起動
+デフォルトでは、http://localhost:5173 で開発サーバーが起動
 
 #### backend
 1. Start the Next.js development server:
