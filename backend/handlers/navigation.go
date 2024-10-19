@@ -1,25 +1,38 @@
 package handlers
 
 import (
-	"fmt"
-	"strconv"
 	"encoding/json"
 	"net/http"
 
 	"campus_navigation/models"
+	"campus_navigation/services"
 )
 
-func Navigate(w http.ResponseWriter, r *http.Request) {
-	path := models.GetNavigationPath()
+type NavigationHandler struct {
+	NavService *services.NavigationService
+}
 
-	// Get start and end parameters
-	startStr := r.URL.Query().Get("start")
-	endStr := r.URL.Query().Get("end")
+func NewNavigationHandler() *NavigationHandler {
+	return &NavigationHandler{
+		NavService: services.NewNavigationService(),
+	}
+}
 
-	start, _ := strconv.Atoi(startStr)
-	end, _ := strconv.Atoi(endStr)
+func (h *NavigationHandler) Navigate(w http.ResponseWriter, r *http.Request) {
+	start := r.URL.Query().Get("start")
+	end := r.URL.Query().Get("end")
 
-	fmt.Println("Start: ", start, "End: ", end)
+	if start == "" || end == "" {
+		http.Error(w, "Start and end parameters are required", http.StatusBadRequest)
+		return
+	}
+
+	path := h.NavService.GetNavigationPath(start, end)
+
+	if path == nil {
+		http.Error(w, "No path found", http.StatusNotFound)
+		return
+	}
 
 	response := models.NavigationResponse{Path: path}
 	w.Header().Set("Content-Type", "application/json")

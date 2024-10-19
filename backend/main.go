@@ -17,7 +17,7 @@ func main() {
 	r.Use(middleware.Recoverer)
 
 	// navigate handler
-	r.Get("/navigate", handlers.Navigate)
+	r.Get("/navigate", handlers.NewNavigationHandler().Navigate)
 
 	log.Println("Server is running on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", r))
