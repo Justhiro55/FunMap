@@ -7,13 +7,13 @@ const Home: React.FC = () => {
 
     return (
         <div style={{ position: 'relative', width: '500px', height: '500px' }}>
-            <img 
+            <img
                 src={MySvgImage}
                 alt="My SVG"
                 style={{ width: '100%', height: '100%' }}
             />
             <button
-                onClick={() => navigate('/next')} // move to next page
+                onClick={() => navigate('/next')}
                 style={{
                     position: 'absolute',
                     top: '50px',
