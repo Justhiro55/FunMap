@@ -1,6 +1,6 @@
-# HAM 経路案内プラットフォーム
+# HAM 経路案内プラットフォーム「Funまっぷ」
 
-### プロジェクトセットアップ(React + Vite + Next.js)
+### プロジェクトセットアップ(React + Vite + go + redis)
 インストール方法
 ```
 git clone git@github.com:FISH-HACKATHON/HAM.git
@@ -21,17 +21,23 @@ npm run dev
 デフォルトでは、http://localhost:5173 で開発サーバーが起動
 
 #### backend
-1. Start the Next.js development server:
-```
-npm run next:dev
+
+1. プロジェクトディレクトリに移動:
+```bash
+cd backend
 ```
 
-2. Build the Next.js project for production:
-```
-npm run next:build
+2. 依存関係をインストール:
+```bash
+go mod tidy
 ```
 
-3. Start the Next.js production server:
+3. Goプログラムをビルド:
+```bash
+go build -o main .
 ```
-npm run next:start
+
+4. Goサーバーを起動:
+```bash
+./main
 ```
