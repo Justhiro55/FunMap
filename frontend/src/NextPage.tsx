@@ -2,13 +2,21 @@ import React, { useState } from 'react';
 import List from './List';
 import './App.css';
 
+type ListItem = string[];
+
+interface Lists {
+  [category: string]: {
+    [floor: string]: ListItem;
+  };
+}
+
 const NextPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [selectedFloor, setSelectedFloor] = useState<string | null>(null);
   const [selectedCategoryButton, setSelectedCategoryButton] = useState<string | null>(null);
 
-  const lists = {
+  const lists: Lists = {
     教室: {
       '1F': ['教室名', '新しいことを学ぶ', 'Cherry'],
       '2F': ['Apple', 'Banana', 'Grape'],
@@ -84,101 +92,101 @@ const NextPage = () => {
       ? Object.values(lists[selectedCategory]).flat()
       : null;
 
-    return (
+  return (
     <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        padding: '20px',
-        backgroundColor: 'white',  // 全体の背景を白に設定
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+      padding: '20px',
+      backgroundColor: 'white',
     }}>
-        {/* left button area */}
-        <div style={{
+      {/* left button area */}
+      <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(2, 1fr)',
         gap: '10px',
         padding: '20px',
         backgroundColor: 'white',
         color: 'black',
-        }}>
+      }}>
         <h3 style={{ gridColumn: 'span 2', textAlign: 'center', margin: '0' }}>ジャンル別検索</h3>
         {Object.keys(lists).map((category) => (
-            <button
+          <button
             key={category}
             onClick={() => handleListSelect(category)}
             style={{
-                padding: '10px',
-                width: '150px',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                backgroundColor: selectedCategoryButton === category ? 'lightblue' : 'white',
-                border: '1px solid #ccc',
-                borderRadius: '5px',
-                color: 'black',
+              padding: '10px',
+              width: '150px',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              backgroundColor: selectedCategoryButton === category ? 'lightblue' : 'white',
+              border: '1px solid #ccc',
+              borderRadius: '5px',
+              color: 'black',
             }}
-            >
+          >
             {category}
-            </button>
+          </button>
         ))}
-        </div>
+      </div>
 
-        {/* center list area */}
-        <div
+      {/* center list area */}
+      <div
         style={{
-            flex: 1,
-            padding: '20px',
-            textAlign: 'center',
-            overflowY: 'auto',
-            maxHeight: '400px',
-            scrollbarWidth: 'none',
-            backgroundColor: 'white',
-            color: 'black',
+          flex: 1,
+          padding: '20px',
+          textAlign: 'center',
+          overflowY: 'auto',
+          maxHeight: '400px',
+          scrollbarWidth: 'none',
+          backgroundColor: 'white',
+          color: 'black',
         }}
         className="scroll-hidden"
-        >
+      >
         <List items={selectedList} onItemSelect={handleItemSelect} selectedItem={selectedItem} />
-        </div>
+      </div>
 
-        {/* right button area */}
-        <div style={{ 
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'flex-start', 
+      {/* right button area */}
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
         padding: '20px',
         backgroundColor: 'white',
         color: 'black',
-        }}>
+      }}>
         {['1F', '2F', '3F', '4F', '5F', '研究棠1F', '研究棠2F', '研究棠3F'].map((floor) => (
-            <button
+          <button
             key={floor}
             onClick={() => handleFloorSelect(floor)}
             style={{
-                padding: '10px',
-                margin: '5px',
-                backgroundColor: selectedFloor === floor ? 'lightblue' : 'white',
-                border: '1px solid #ccc',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                width: '100px',
-                color: 'black',
+              padding: '10px',
+              margin: '5px',
+              backgroundColor: selectedFloor === floor ? 'lightblue' : 'white',
+              border: '1px solid #ccc',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              width: '100px',
+              color: 'black',
             }}
-            >
+          >
             {floor}
-            </button>
+          </button>
         ))}
-        </div>
+      </div>
 
-        <style>
+      <style>
         {`
-            .scroll-hidden::-webkit-scrollbar {
+          .scroll-hidden::-webkit-scrollbar {
             display: none;
-            }
+          }
         `}
-        </style>
+      </style>
     </div>
-    );
+  );
 };
 
 export default NextPage;
